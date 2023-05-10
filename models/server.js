@@ -41,7 +41,14 @@ class Server {
 
     sockets() {
 
-        this.io.on('connection', socketController );
+        this.io.on('connection', (socket) => {
+            console.log(`Socket conectado: ${socket.id}`);
+            console.warn('Estamos')
+            socket.on('fingerprint', (data) => {
+                console.log(`Huella digital del cliente: ${data}`);
+            });
+        });
+        
 
     }
 
